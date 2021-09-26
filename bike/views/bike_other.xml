@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+    <!-- product.product record -->
+    <record id='brand_action' model='ir.actions.act_window'>
+            <field name="name">Brand</field>
+            <field name="res_model">bike.brand</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_type">form</field>
+    </record>
+
+    <menuitem name="Brand" id="bike_brand_sub_menu" parent="bike_base_menu" action="brand_action"/>
+
+
+    <!-- bike brand form view -->
+    <record id="bike_brand_form_view" model="ir.ui.view">
+        <field name="name">Bike.brand</field>
+        <field name="model">bike.brand</field>
+        <field name="arch" type="xml">
+            <form string="Brand">
+                <header>
+                </header>
+
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="logo" widget="image"/>
+                            <field name="name" />
+                            <field name="description"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="size_chart" widget="image" />
+                        </group>
+                    </group>
+                </sheet>
+                
+            </form>
+        </field>
+    </record>
+
+
+
+    <!--bike parts menu and record  -->
+     <record id='part_action' model='ir.actions.act_window'>
+            <field name="name">Parts</field>
+            <field name="res_model">bike.parts</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_type">form</field>
+    </record>
+    <menuitem name="Parts" id="bike_part_sub_menu" parent="bike_base_menu" action="part_action"/>
+
+    <!-- parts form -->
+    <record id="bike_part_form_view" model="ir.ui.view">
+        <field name="name">Bike.parts</field>
+        <field name="model">bike.parts</field>
+        <field name="arch" type="xml">
+            <form string="Parts">
+                <header>
+                     <field name="level" widget="statusbar"  options="{'clickable': '1', 'fold_field': 'fold'}" />
+                </header>
+
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="name" />
+                        </group>
+                        <group name="group_right">
+                        </group>
+                    </group>
+                </sheet>
+                
+            </form>
+        </field>
+    </record>
+
+
+    
+
+    </data>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+<!-- Step1 -->
+  <!-- action -->
+    <record id='library_action' model='ir.actions.act_window'>
+            <field name="name">Books</field>
+            <field name="res_model">library.book</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+  
+    <!-- Top menu item -->
+    
+    <menuitem name="Library" id="library_base_menu"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Books" id="library_sub_menu1_book" parent="library_base_menu" action="library_action"/>
+    <!-- <menuitem name="Menu 2" id="hospital_sub_menu_2" parent="hospital_base_menu" action="hospital_action"/>  -->
+   
+  </data>
+
+<!-- Step2 -->
+  <!-- tree view -->
+  <record id="book_tree_view" model="ir.ui.view">
+    <field name="name">Book List</field>
+    <field name="model">library.book</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name" />
+            <field name="author_id" widget="many2many_tags" />
+            <field name="date_release" />
+            <field name="category_ids" widget="many2many_tags" />
+        </tree>
+    </field>
+  </record>
+
+  <!-- form view -->
+  <record id="book_form_view" model="ir.ui.view">
+        <field name="name">Book Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <header>
+                    <button name="test" type="object" string="Test"/>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="name" />
+                            <field name="author_id" widget="many2many_tags" />
+                            <field name="rating" />
+                            <field name="page" />
+                            <!-- <field name="state" invisible='1'/> -->
+                            <field name="date_release" />
+                            <field name="date_updated" />
+                            <field name="description"/>
+                            <field name="category_ids" widget="many2many_tags" />
+
+                        </group>
+                        <group name="group_right">
+                            <field name="cover" widget="image" />
+                            
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

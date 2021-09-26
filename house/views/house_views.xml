@@ -1,0 +1,157 @@
+<odoo>
+  <data>
+<!-- Step1 -->
+  <!-- action -->
+  <!-- house action -->
+    <record id='house_action' model='ir.actions.act_window'>
+            <field name="name">Real Estate</field>
+            <field name="res_model">house</field>
+            <field name="view_mode">kanban,tree,form</field>
+
+            <field name="context">{}</field>
+            <field name="view_type">form</field>
+    </record>
+    <!-- house category action-->
+    <record id='house_category_action' model='ir.actions.act_window'>
+            <field name="name">Property category</field>
+            <field name="res_model">house.category</field>
+            <field name="view_mode">kanban,tree,form</field>
+
+            <field name="context">{}</field>
+            <field name="view_type">form</field>
+    </record>
+    <!-- house tag action-->
+    <record id='house_tag_action' model='ir.actions.act_window'>
+            <field name="name">Property tags</field>
+            <field name="res_model">house.tag</field>
+            <field name="view_mode">kanban,tree,form</field>
+
+            <field name="context">{}</field>
+            <field name="view_type">form</field>
+    </record>
+    
+
+    <menuitem name="HJ14 House" id="house_base_menu"/>
+    <!-- sub menu -->
+    <menuitem name="Real Estate" id="house_sub_menu" parent="house_base_menu" action="house_action"/>
+    <menuitem name="Propery type" id="house_category_sub_menu" parent="house_base_menu" action="house_category_action"/>
+    <menuitem name="Propery tags" id="house_tag_sub_menu" parent="house_base_menu" action="house_tag_action"/>
+
+
+  
+  <!-- house search view -->
+  <record id="house_search_view" model="ir.ui.view">
+        <field name="name">Search property</field>
+        <field name="model">house</field>
+        <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="name" string="House" />
+                    <separator/>
+                    <filter string="Bedroom = 3" name="bedroom_filter" domain="['|',('bedroom', '=', 3),('expected_price','>',0)]"/>
+
+                    <group expand="1" string="Group By">
+                        <filter string="bedroom" name="bedroom_group" context="{'group_by':'bedroom'}"/>
+                    </group>
+                </search>
+        </field>
+  </record>
+
+
+  <!-- house tree view -->
+  <record id="house_tree_view" model="ir.ui.view">
+        <field name="name">Real Estate</field>
+        <field name="model">house</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="postcode" />
+                <field name="suburb"/>
+                <field name="bedroom" />
+                <field name="bathroom" />
+                <field name="garage" />
+                <field name="expected_price" />
+            </tree>
+        </field>
+    </record>
+
+  <!--house form view -->
+    <record id="house_form_view" model="ir.ui.view">
+        <field name="name">Real Estate</field>
+        <field name="model">house</field>
+        <field name="arch" type="xml">
+            <form string="Real Estate">
+                <header>
+                    <button type="object" name="test"
+                            string="Check ISBN" />
+                    
+                    <!-- <field name="state" widget="statusbar" /> -->
+                </header>
+                <sheet>
+                     <group name="group_top">
+                          <group>
+                              <h1><field name="name" /></h1>
+                              <separator></separator>
+                              <div><field name="tag_ids" widget="many2many_tags"/></div>
+                          </group>
+                          <group>
+                          <!-- need empty group to make titel stay top -->
+                          </group>
+
+                          <group name="group_left">
+                              <field name="postcode" />
+                              <field name="suburb"/>
+                              <field name="expected_price" />
+                          </group>
+                          <group name="group_right">
+                              <field name="available_from" />
+                              <field name="selling_price" />
+                              <field name="link" widget='url'/>
+                          </group>
+                      </group>
+                      <notebook>
+                      <!-- page 1 baseic info -->
+                              <page string="Normal_info">
+                                <group>
+                                  <group name='group_left'>
+                                    <field name="description" />
+                                    <field name="bedroom" />
+                                    <field name="bathroom" />
+                                    <field name="garage" />
+                                    <field name="garden" />
+                                    <field name="active" />
+                                    <field name="living_area" />
+                                    <field name="total_area" />
+                                    <field name="property_cat_id" />
+                                    <field name="property_type" />
+                                  <!-- <field name="property_selling_status" /> -->
+                                  </group>
+                                
+                                  <group name='group_right'>
+                                    <field name="property_type" />
+                                    <!-- <field name="iframe" /> -->
+
+                                  </group>
+                                </group>
+                              </page>
+
+                            <!-- page 2 maps -->
+                              <page string="Map">
+                                <field name="house_map"/>
+                              </page>
+                            <!-- page 3 sales Info -->
+                              <page string="Sales Info">
+                                <group>
+                                  <field name="seller"/>
+                                  <field name="buyer"/>
+                                </group>
+                              </page>
+                      </notebook>
+                </sheet>
+            </form>
+          </field>
+    </record> 
+
+
+
+    </data>
+</odoo>

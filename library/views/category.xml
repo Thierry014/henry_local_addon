@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+<!-- Step1 -->
+  <!-- action -->
+        <record id='category_action' model='ir.actions.act_window'>
+            <field name="name">Cats</field>
+            <field name="res_model">book.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Categories" id="library_sub_menu2_cat" parent="library_base_menu" action="category_action"/> 
+
+        <!-- form view -->
+        <record id="car_form_view" model="ir.ui.view">
+            <field name="name">Cats Form</field>
+            <field name="model">book.category</field>
+            <field name="arch" type="xml">
+                <form string="Book">
+                    <header>
+                        <button name="make_it" type="object" string="Add"/>
+                    </header>
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="over18"/>
+                </group>
+                </form>
+            </field>
+            </record>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bike_brand,access_bike_brand,model_bike_brand,base.group_user,1,1,1,1
+access_bike_category,access_bike_category,model_bike_category,base.group_user,1,1,1,1
+access_bike_parts,access_bike_parts,model_bike_parts,base.group_user,1,1,1,1

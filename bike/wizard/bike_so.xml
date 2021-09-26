@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.act_window" id="action_create_bike_so">
+	    <field name="name">Bike order</field>
+	    <field name="res_model">bike.bikeso.wizard</field>
+	    <field name="view_type">form</field>
+	    <field name="view_mode">form</field>
+	    <field name="target">new</field>
+    </record>
+
+    <!-- wiz form view -->
+    <record id='bike_so_wizard_form_view' model='ir.ui.view'>
+        <field name='name'>BIKE SO</field>
+        <field name='model'>bike.bikeso.wizard</field>
+        <field name='arch' type='xml'>
+        <form string="BIKE SO">
+        <sheet>
+            <group>
+                <field name='bike_id'/>
+            </group>
+            <group>
+                <!-- <field name='holder_id'/> -->
+            </group>
+        </sheet>
+        <footer>
+            <button string='Create SO' type='object' name='create_bike_sale_order' class='btn-primary'/>
+        </footer>
+
+        </form>
+        </field>
+    </record>
+
+</odoo>

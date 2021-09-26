@@ -1,0 +1,47 @@
+<odoo>
+  <data>
+<!-- Step1 -->
+  <!-- action -->
+    <record id='dummy_action' model='ir.actions.act_window'>
+            <field name="name">Dummy</field>
+            <field name="res_model">dummy</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+  
+    <!-- Top menu item -->
+    
+    <menuitem name="Dummy" id="dummy_base_menu"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Menu 1" id="dummy_sub_menu_1" parent="dummy_base_menu" action="dummy_action"/>
+    <!-- <menuitem name="Menu 2" id="hospital_sub_menu_2" parent="hospital_base_menu" action="hospital_action"/>  -->
+
+    <record id="dummy_test_form_view" model="ir.ui.view">
+        <field name="name">Test</field>
+        <field name="model">dummy</field>
+        <field name="arch" type="xml">
+            <form string="Dummy">
+                <header>
+                    <button name="dummy_test" type="object"
+                        string="Test" />
+                    
+                </header>
+
+                <group>
+                  <field name="name"/>
+                  <field name="task_list"/>
+                </group>
+                
+            </form>
+        </field>
+    </record>
+   
+  </data>
+
+<!-- Step2 -->
+  <!-- tree view -->
+  <!-- form view -->
+</odoo>
