@@ -46,6 +46,9 @@ class House(models.Model):
     buyer = fields.Many2one(comodel_name='res.partner', string='Buyer')
 
     tag_ids = fields.Many2many(comodel_name='house.tag', string='')
+
+    offer_ids = fields.One2many(comodel_name='house.offer', inverse_name='property_id', string='')
+    
     
     
     
@@ -53,7 +56,7 @@ class House(models.Model):
     # google map field => can be a binary or iframe or something else
 
     def test(self):
-        ...
+        print(f'>>>>>>>>>>>house ctx : {self.env.context}')
 
     
 

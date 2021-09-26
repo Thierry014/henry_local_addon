@@ -133,18 +133,37 @@
                                   </group>
                                 </group>
                               </page>
-
-                            <!-- page 2 maps -->
-                              <page string="Map">
-                                <field name="house_map"/>
-                              </page>
-                            <!-- page 3 sales Info -->
+                            <!-- page 2 sales Info -->
                               <page string="Sales Info">
                                 <group>
                                   <field name="seller"/>
                                   <field name="buyer"/>
                                 </group>
                               </page>
+
+                            <!-- page 3 Offer -->
+                              <page string="Offer Info">
+                              <!-- set default value for one2many, manyside M2O field -->
+                                  <field name="offer_ids" context="{'default_property_id': id}">
+                                  <!-- widget="section_and_note_one2many" -->
+                                    <tree>
+                                        <field name="property_id"/>
+                                        <field name="price"/>
+                                        <field name="partner_id"/>
+                                        
+                                        <button name="accept_offer" string="Confirm"  type="object" icon="fa-check"/>
+                                        <button name="refuse_offer" string="Cancel"  type="object" icon="fa-times"/>
+
+                                        <field name="offer_state"/>
+                                    </tree>
+                                    </field>
+                              </page>
+
+                            <!-- page 4 maps -->
+                              <page string="Map">
+                                <field name="house_map"/>
+                              </page>
+                            
                       </notebook>
                 </sheet>
             </form>
