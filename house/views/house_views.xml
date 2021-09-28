@@ -34,7 +34,7 @@
     <menuitem name="HJ14 House" id="house_base_menu"/>
     <!-- sub menu -->
     <menuitem name="Real Estate" id="house_sub_menu" parent="house_base_menu" action="house_action"/>
-    <menuitem name="Propery type" id="house_category_sub_menu" parent="house_base_menu" action="house_category_action"/>
+    <menuitem name="Propery Category" id="house_category_sub_menu" parent="house_base_menu" action="house_category_action"/>
     <menuitem name="Propery tags" id="house_tag_sub_menu" parent="house_base_menu" action="house_tag_action"/>
 
 
@@ -81,17 +81,17 @@
         <field name="arch" type="xml">
             <form string="Real Estate">
                 <header>
-                    <button type="object" name="test"
-                            string="Check ISBN" />
+                    <button type="object" name="mark_as_sold" string="Sold" class='btn-success'/>
+                    <button type="object" name="mark_as_cancelled" string="Canncelled" class='btn-danger' />
                     
-                    <!-- <field name="state" widget="statusbar" /> -->
+                    <field name="property_selling_status" widget="statusbar" clickable='1' />
                 </header>
                 <sheet>
                      <group name="group_top">
                           <group>
                               <h1><field name="name" /></h1>
                               <separator></separator>
-                              <div><field name="tag_ids" widget="many2many_tags"/></div>
+                              <div><field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/></div>
                           </group>
                           <group>
                           <!-- need empty group to make titel stay top -->
@@ -100,12 +100,14 @@
                           <group name="group_left">
                               <field name="postcode" />
                               <field name="suburb"/>
-                              <field name="expected_price" />
+                              <field name="available_from" />
+                              <field name="link" widget='url'/>
+
                           </group>
                           <group name="group_right">
-                              <field name="available_from" />
+                              <field name="expected_price" />
+                              <field name="best_offer"/>
                               <field name="selling_price" />
-                              <field name="link" widget='url'/>
                           </group>
                       </group>
                       <notebook>
@@ -146,15 +148,18 @@
                               <!-- set default value for one2many, manyside M2O field -->
                                   <field name="offer_ids" context="{'default_property_id': id}">
                                   <!-- widget="section_and_note_one2many" -->
-                                    <tree>
-                                        <field name="property_id"/>
-                                        <field name="price"/>
+                                    <tree decoration-success="offer_state == 'accepted'" decoration-danger="offer_state in ['refused']">
+                                        <!-- <field name="property_id"/> -->
                                         <field name="partner_id"/>
+                                        <field name="price"/>
+
                                         
                                         <button name="accept_offer" string="Confirm"  type="object" icon="fa-check"/>
                                         <button name="refuse_offer" string="Cancel"  type="object" icon="fa-times"/>
 
                                         <field name="offer_state"/>
+                                        <!-- <field name="validity"/> -->
+                                        <!-- <field name="offer_deadline"/> -->
                                     </tree>
                                     </field>
                               </page>

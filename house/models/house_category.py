@@ -13,3 +13,5 @@ class HouseTag(models.Model):
     _description = 'tag of a property'
 
     name = fields.Char(string='Name')
+    color = fields.Integer(string='')
+    
