@@ -6,7 +6,7 @@
     <record id='house_action' model='ir.actions.act_window'>
             <field name="name">Real Estate</field>
             <field name="res_model">house</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">tree,kanban,form</field>
 
             <field name="context">{}</field>
             <field name="view_type">form</field>
@@ -62,7 +62,9 @@
         <field name="name">Real Estate</field>
         <field name="model">house</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-warning="property_selling_status == 'received'" 
+                  decoration-success="property_selling_status in ['sold','confirmed']"
+                  decoration-bf="property_selling_status in ['sold']">
                 <field name="name" />
                 <field name="postcode" />
                 <field name="suburb"/>
@@ -70,6 +72,7 @@
                 <field name="bathroom" />
                 <field name="garage" />
                 <field name="expected_price" />
+                <field name="property_selling_status" invisible='1'/>
             </tree>
         </field>
     </record>
@@ -91,7 +94,7 @@
                           <group>
                               <h1><field name="name" /></h1>
                               <separator></separator>
-                              <div><field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/></div>
+                              <div><field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" editable="1"/></div>
                           </group>
                           <group>
                           <!-- need empty group to make titel stay top -->
@@ -148,7 +151,8 @@
                               <!-- set default value for one2many, manyside M2O field -->
                                   <field name="offer_ids" context="{'default_property_id': id}">
                                   <!-- widget="section_and_note_one2many" -->
-                                    <tree decoration-success="offer_state == 'accepted'" decoration-danger="offer_state in ['refused']">
+                                  <!-- editable = 1 allow user add a line within form view -->
+                                    <tree decoration-success="offer_state == 'accepted'" decoration-danger="offer_state in ['refused']" editable='1'> 
                                         <!-- <field name="property_id"/> -->
                                         <field name="partner_id"/>
                                         <field name="price"/>

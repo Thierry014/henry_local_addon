@@ -8,6 +8,15 @@ class House(models.Model):
     _name = 'house'
     _description = 'Model about properties'
 
+    # sql constraints 
+    # ['constraint name','CHECK(field value >< ?)',
+    # 'error message'
+    # ]
+    _sql_constraints = [
+         ('check_price', 'CHECK(expected_price >= 0)',
+         'The price of the house should >= 0 .')
+    ]
+
     name = fields.Char(string='Title')
     description = fields.Text(string='Descripyion')
 
