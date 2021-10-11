@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import UserError, ValidationError
 
 
 
@@ -93,7 +94,14 @@ class House(models.Model):
                 
     
 
-    
+# inherit function 
+
+    def unlink(self):
+        # if self['property_selling_status'] not in ['cancelled']:
+        if self.property_selling_status not in ['cancelled']:
+
+            raise UserError('Property can only be sold in Canncel State')
+        return super(House,self).unlink()
     
     
     

@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+         <record id="house_category_form_view" model="ir.ui.view">
+        <field name="name">Real Estate</field>
+        <field name="model">house.category</field>
+        <field name="arch" type="xml">
+            <form string="Real Estate">
+                <header>
+                    <!-- <field name="property_selling_status" widget="statusbar" clickable='1' /> -->
+                </header>
+                <sheet>
+                <!-- oe stat button -->
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="show_related_offer" type="object" icon="fa-money" >
+                            <div class="o_form_field o_stat_info mr4">
+                                            <span class="o_stat_text">Offer(s):</span>
+                            </div>
+                            
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value"><field name="offer_count"/></span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <h1><field name="name"/></h1>
+                    </group>
+                    <group>
+                    </group>
+
+                    <notebook>
+                        <page string="house">
+                                <field name="house_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="expected_price"/>
+                                        <field name="property_selling_status"/>
+                                    </tree>
+                                </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+          </field>
+    </record> 
+    </data>
+</odoo>
