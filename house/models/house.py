@@ -104,4 +104,14 @@ class House(models.Model):
         return super(House,self).unlink()
     
     
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+    cust_ref = fields.Char(string='', required=True)
     
+
+    @api.model
+    def create(self,vals):
+        print('>>>create called<<<')
+        return super().create(vals)
+
