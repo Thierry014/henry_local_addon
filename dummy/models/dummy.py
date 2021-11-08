@@ -24,5 +24,34 @@ class Dummy(models.Model):
         else:
             _logger.error(False)
 
+##########################################################################################
+# edit email template 
+# 1. get it's type
+# 2. change it's email temaplate in settings
+# 3. add account into manifest
 
+            # ('out_invoice','Customer Invoice'),
+            # ('in_invoice','Vendor Bill'),
+            # ('out_refund','Customer Credit Note'),
+            # ('in_refund','Vendor Credit Note'),
+
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
+
+    subject_type = fields.Char(string='', compute='_get_type')
+    
+
+    def _get_type(self):
+        for r in self:
+            if r.type:
+                if r.type == 'out_invoice':
+                    r.subject_type = 'Invoice' 
+                elif r.type == 'in_invoice':
+                    r.subject_type = 'Vendor Bill' 
+                elif r.type == 'out_refund':
+                    r.subject_type = 'Customer Credit Note' 
+                elif r.type == 'in_refund':
+                    r.subject_type = 'Credit Note' 
+
+                    
 
