@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "library_addons",
+    'name': "hook_testing",
 
     'summary': """
-        How a library work""",
+        Short (1 phrase/line) summary of the module's purpose, used as
+        subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Let's build a new Lib app
+        Long description of module's purpose
     """,
 
-    'author': "Hj14",
+    'author': "",
     'website': "",
 
     # Categories can be used to filter modules in modules listing
@@ -19,19 +20,19 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','library'],
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
-        'views/books.xml',
-        'views/category.xml',
-        'views/templates.xml',
+        # 'security/ir.model.access.csv',
+        # 'views/views.xml',
+        # 'views/templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
 
+    'post_init_hook': 'post_init_hook',
 
 }

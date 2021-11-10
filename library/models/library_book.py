@@ -10,11 +10,18 @@ class Library(models.Model):
     _rec_name = 'name'
     # _order = 'order in tree view' 
 
+    @api.model
+    def _get_author_name(self):
+        print(f'>>>>>>>>>>>>>>>>{self.author_id}<<<<<<<<<<<<<')
+        return self.author_id.name
+
     name = fields.Char(string='Book Name')
     date_release = fields.Date(string='Released date')
     date_updated = fields.Datetime(string='Last update time')
     
     author_id = fields.Many2many(comodel_name='res.partner', string='Authors')
+    author_name = fields.Char(string='Author name', default=_get_author_name)
+    
     publisher_id = fields.Many2one(comodel_name='res.partner', string='Publisher')
     city = fields.Char(string='City', related='publisher_id.city')
     
@@ -36,6 +43,8 @@ class Library(models.Model):
 
     # other model
     category_ids = fields.Many2many(comodel_name='book.category', string='Categories')
+
+   
     
     
 
