@@ -5,6 +5,8 @@ from . import models
 
 from odoo import api, SUPERUSER_ID
 
+# hook in library module
+
 def post_init_hook(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
     print(f'>>>>>>>>>>> post_init_hook run <<<<<<<<<<<<<<')
